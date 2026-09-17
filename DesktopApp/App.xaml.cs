@@ -1,10 +1,13 @@
-﻿using System.Windows;
+﻿using DesktopApp.Data;
+using DesktopApp.Models;
+using DesktopApp.Services;
+using DesktopApp.ViewModels;
+using DesktopApp.Views;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using DesktopApp.Data;
-using DesktopApp.Models;
+using System.Windows;
 
 namespace DesktopApp
 {
@@ -30,6 +33,16 @@ namespace DesktopApp
                     })
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<AppDbContext>();
+
+                    //Authservices
+                    services.AddSingleton<UserSession>();
+                    services.AddScoped<IAuthService, AuthService>();
+
+                    // Register ViewModels and Views
+                    services.AddTransient<LoginViewModel>();
+                    services.AddTransient<RegisterViewModel>();
+                    services.AddTransient<LoginWindow>();
+                    services.AddTransient<RegisterWindow>();
                 })
                 .Build();
         }
@@ -38,9 +51,14 @@ namespace DesktopApp
         {
             await AppHost.StartAsync();
 
-            using var scope = AppHost.Services.CreateScope();
-            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-            db.Database.Migrate();
+            using (var scope = AppHost.Services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                db.Database.Migrate();
+            }
+
+            var loginWindow = AppHost.Services.GetRequiredService<LoginWindow>();
+            loginWindow.Show();
 
             base.OnStartup(e);
         }

@@ -1,0 +1,20 @@
+﻿<Window x:Class="DesktopApp.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Login" Height="320" Width="380"
+        WindowStartupLocation="CenterScreen">
+    <StackPanel Margin="24" VerticalAlignment="Center">
+        <TextBlock Text="Sign in" FontSize="20" FontWeight="Bold" Margin="0,0,0,16"/>
+
+        <TextBlock Text="Username"/>
+        <TextBox x:Name="UserNameBox" Text="ddd" Margin="0,0,0,8"/>
+
+        <TextBlock Text="Password"/>
+        <PasswordBox x:Name="PasswordBox" Margin="0,0,0,8" Password="ddfd"/>
+
+        <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" TextWrapping="Wrap" Margin="0,0,0,8"/>
+
+        <Button Content="Login" Click="LoginButton_Click" Margin="0,0,0,8"/>
+        <Button Content="Create an account" Click="RegisterLink_Click" Background="Transparent" BorderThickness="0"/>
+    </StackPanel>
+</Window>
