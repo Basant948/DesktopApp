@@ -1,6 +1,6 @@
-﻿using DesktopApp.ViewModels;
-using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
+using DesktopApp.ViewModels;
 
 namespace DesktopApp.Views
 {
@@ -32,7 +32,8 @@ namespace DesktopApp.Views
 
         private void OnLoggedIn()
         {
-            var mainWindow = App.AppHost.Services.GetRequiredService<MainWindow>();
+            // MainWindow lives in the root DesktopApp namespace, not DesktopApp.Views
+            var mainWindow = App.AppHost.Services.GetRequiredService<DesktopApp.MainWindow>();
             mainWindow.Show();
             Close();
         }

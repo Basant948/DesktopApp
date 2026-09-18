@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+using System;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DesktopApp.Services;
@@ -15,9 +16,11 @@ namespace DesktopApp.ViewModels
         [ObservableProperty]
         private string errorMessage = string.Empty;
 
+        // PasswordBox.Password cannot be safely data-bound in WPF,
+        // so this is set manually from code-behind before the command runs.
         public string Password { get; set; } = string.Empty;
 
-        public event System.Action? LoggedIn;
+        public event Action? LoggedIn;
 
         public LoginViewModel(IAuthService authService)
         {

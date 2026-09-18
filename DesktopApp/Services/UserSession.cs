@@ -1,4 +1,4 @@
-﻿using DesktopApp.Models;
+using DesktopApp.Models;
 
 namespace DesktopApp.Services
 {

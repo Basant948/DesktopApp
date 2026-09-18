@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
-using DesktopApp.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace DesktopApp.Services
 {
     public class AuthResult
     {
         public bool Succeeded { get; set; }
-        public string[] Errors { get; set; } = System.Array.Empty<string>();
+        public string[] Errors { get; set; } = Array.Empty<string>();
     }
 
     public interface IAuthService
