@@ -43,6 +43,7 @@ namespace DesktopApp
                     services.AddTransient<RegisterViewModel>();
                     services.AddTransient<LoginWindow>();
                     services.AddTransient<RegisterWindow>();
+                    services.AddTransient<MainWindow>();
                 })
                 .Build();
         }
